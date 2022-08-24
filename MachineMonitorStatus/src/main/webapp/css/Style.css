@@ -18,7 +18,7 @@ ul{
 	position: absolute;
 	width: 350px;
 	height: 97px;
-	left: 1318px;
+	left: 1300px;
 	top: 23px;
 	border: 1px solid red;
 }
@@ -37,13 +37,6 @@ ul{
 	color: #6D6D6D;
 	border: 1px solid blue;
 	padding-bottom: 1em;
-	align-items: center;
-}
-
-#navegacao ul span{
-	display: flex;
-	position: absolute;
-	text-align: center;
 }
 
 #header_container{
