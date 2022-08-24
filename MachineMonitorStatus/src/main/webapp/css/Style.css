@@ -6,6 +6,7 @@
 body{
 	font-family: 'Poppins', sans-serif;
 	background: #FFF;
+	width: 1000px;
 }
 
 ul{
@@ -14,13 +15,19 @@ ul{
 	
 }
 
+#principal {
+	width: 1000px;
+}
+
+#navegacao{
+	position: flex;
+}
+
 #navegacao ul{
-	position: absolute;
-	width: 350px;
+	position: relative;
+	float: right;
+	width: 340px;
 	height: 97px;
-	left: 1300px;
-	top: 23px;
-	border: 1px solid red;
 }
 
 #navegacao ul li{
@@ -35,14 +42,13 @@ ul{
 	display: block;
 	text-decoration: none;
 	color: #6D6D6D;
-	border: 1px solid blue;
-	padding-bottom: 1em;
+	padding-top: 2em;
 }
 
 #header_container{
 	position: absolute;
-	width: 1699px;
-	height: 120px;
+	width: 100%;
+	height: 90px;
 	left: 0px;
 	top: 0px;
 
@@ -52,18 +58,14 @@ ul{
 
 }
 
-#navegacao{
-	position: flex;
-}
+
 
 
 .logo{
 	position: absolute;
-width: 65px;
-height: 66.68px;
-left: 58px;
-top: 25px;
-
-background: url(../imagens/midiavoxlogo.png);
-border-radius: 10px;
+	width: 65px;
+	height: 66.68px;
+	left: 40px;
+	top: 25px;
+	border-radius: 10px;
 }
