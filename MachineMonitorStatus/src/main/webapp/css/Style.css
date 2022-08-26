@@ -6,7 +6,6 @@
 body{
 	font-family: 'Poppins', sans-serif;
 	background: #FFF;
-	
 }
 
 ul{
@@ -55,15 +54,75 @@ ul{
 }
 
 #busca{
-	margin: 3em auto;
-	width: 60%;
+	background: #FFFFFF;
+	margin: 5em auto;
+	width: 50%;
 	height: 80px;
-	border: 1px solid darkred;
+	box-shadow: 0px 0px 20px rgba(214, 214, 214, 0.25);
+	border-radius: 10px;
+}
+
+#filtro{
+	position: relative;
+	left: 25px;
+	top: 20px;
+	bottom: 20px;
+	padding: 5px;
+	width: 40%;
+	height: 40px;
+	border: 2px solid rgba(196, 196, 196, 0.63);
+	border-radius: 100px;
+	display: block;
+}
+
+#input{
+	border: none;
+	padding: 8px;
+	width: 85%;
+	height: 100%;
+	background: transparent;
+	outline: none;
+
+}
+
+#search-button{
+	border: none;
+	background: transparent;
+	margin-right: 3px;
+	float: right;
+	width: 9%;
+	cursor: pointer;
+	outline: none;
+}
+
+#search-button:hover{
+	border: 1px solid  rgba(255,255,255,0.5);
+}
+
+#search-button:active{
+	margin-right: 7px;
+	width: 7%;
+	border: 1px solid  rgba(255,255,255,0.5);
+}
+
+#filter-button{
+	border: none;
+	position: relative;
+	left: 500px;
+	top: -20px;
+	width: 20%;
+	height: 40px;
+	background: rgba(64, 169, 68, 0.8);
+	box-shadow: 0px 4px 12px rgba(148, 148, 148, 0.25);
+	border-radius: 100px;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-align: center;
 }
 
 #table_container{
 	margin: 3em auto;
-	width: 83%;
+	width: 75%;
 	border-radius: 20px 20px 0px 0px;
 	background: #CA2F2F 90%;
 }
