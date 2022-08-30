@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Machine Monitor Status</title>
+    <link rel="stylesheet" href="css/StyleCadastrar.css" type="text/css" >
+</head>
+<body>
+    <div id="principal"><!-- Início Principal-->
+        <div id="header_container"><!-- Início Header-->
+               <a href="http://www.midiavox.com.br/" class="logo"><img src="imagens/midiavoxlogo.png" width="45px"></a>
+
+            <div id = "navegacao">
+                <ul >
+                    <li>
+                        <a href="index.html" style="margin-right: 50px; color: rgba(255, 11, 11, 0.9);"> <img src="imagens/geral.png" width="30px"> Geral
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html" style="margin-right: 50px; width: 80px;"> <img src="imagens/monitoring.png" width="30px"> Monitoramento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html"> <img src="imagens/editing.png" width="25px"> Cadastrar
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- Fim Header-->
+
+        <div id="cadastro_container">
+        	<h1>Cadastrar Máquina</h1>
+        	<div id="dataInputs"> 
+        		<input type="text" name="IP" style="width: 85%;" placeholder="IP">
+        		<input type="text" name="limite-de-memoria" class="machine_data" placeholder="Limite de Memória">
+        		<input type="text" name="limite-de-processamento" class="machine_data" placeholder="Limite de Processamento">
+        		<input type="text" name="limite-de-disco" class="machine_data" placeholder="Limite de Disco">
+        		<input type="text" name="nome-da-maquina" class="machine_data" placeholder="Nome da Máquina">
+        		<div id="descriptionBox">
+        			<h2>Descrição</h2>
+        			<textarea id="descricao"></textarea>
+        		</div>
+        		<button id="btnCadastrar">Cadastrar</button>
+        		
+        	</div>
+        </div>
+    </div><!-- Fim Principal-->
+</body>
+</html>

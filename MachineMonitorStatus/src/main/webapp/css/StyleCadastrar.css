@@ -1,0 +1,147 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+	background: #FFF;
+}
+
+ul{
+	padding: 0;
+	list-style: none;
+	
+}
+
+#principal {
+	width: 100%;
+	min-width: 1000px;
+}
+
+#navegacao{
+	position: flex;
+}
+
+#navegacao ul{
+	position: relative;
+	float: right;
+	width: 27%;
+	height: 97px;
+}
+
+#navegacao ul li{
+	float: left;
+}
+
+#navegacao ul a{
+	width: 60px;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: #6D6D6D;
+	padding-top: 2em;
+}
+
+#header_container{
+	width: 100%;
+	height: 90px;
+	background: #FCFCFC;
+	box-shadow: 1px 1px 15px rgba(183, 183, 183, 0.25);
+	border-radius: 0px;
+}
+
+#cadastro_container{
+	margin: 30px auto;
+	max-width: 800px;
+	width: 56%;
+	height: 743px;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 20px rgba(221, 221, 221, 0.25);
+	border-radius: 20px;
+	justify-content: center;
+	padding: 20px;
+	}
+#cadastro_container h1{
+	text-align: center;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 36px;
+	text-align: center;
+	text-transform: uppercase;
+
+	color: rgba(64, 169, 68, 0.9);
+}
+
+#dataInputs{
+	margin: 50px auto;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 50px 30px;
+	justify-content: center;
+}
+#dataInputs input{
+	padding: 5px 10px;
+	border: none;
+	background: transparent;
+	outline: none;
+	border-bottom: 2px solid rgba(64, 169, 68, 0.9);
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #6D6D6D;
+}
+
+#descriptionBox{
+	padding: 0 50px;
+	width: 100%;
+	justify-content: center;
+}
+
+#descriptionBox h2{
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #6D6D6D;
+}
+
+#descricao{
+	padding: 5px;
+	background: transparent;
+	outline: none;
+	border: 2px solid rgba(64, 169, 68, 0.9);
+	border-radius: 6px;
+	width: 100%;
+	height: 160px;
+}
+
+#btnCadastrar{
+	width: 25%;
+	height: 55px;
+	background: #FDFDFD;
+	box-shadow: 0px 0px 8px;
+	border: rgba(64, 169, 68, 0.25);
+	border-radius: 100px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	color: #40A944;
+}
+
+.machine_data{
+	width: 40%;
+}
+
+.logo{
+	position: absolute;
+	width: 65px;
+	height: 66.68px;
+	left: 40px;
+	top: 25px;
+	border-radius: 10px;
+}
