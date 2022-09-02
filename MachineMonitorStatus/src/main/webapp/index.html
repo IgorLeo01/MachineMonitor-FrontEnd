@@ -5,27 +5,30 @@
     <meta charset="utf-8">
     <title>Machine Monitor Status</title>
     <link rel="stylesheet" href="css/Style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id="principal">
         <div id="header_container">
-            <a href="http://www.midiavox.com.br/" class="logo"><img src="imagens/midiavoxlogo.png" width="45px"></a>
+            <a href="http://www.midiavox.com.br/" class="logo"><img src="imagens/midiavoxlogo.png" width="35px"></a>
 
             <div id="navegacao">
                 <ul>
                     <li>
-                        <a href="index.html" style="margin-right: 50px; color: rgba(255, 11, 11, 0.9);"> <img
-                                src="imagens/geral.png" width="30px"> Geral
+                        <a href="index.html" style="margin-right: 50px; color: rgba(255, 11, 11, 0.9); width: 40px;"> <img
+                                src="imagens/geral.png" width="23px"> Geral
                         </a>
                     </li>
                     <li>
                         <a href="index.html" style="margin-right: 50px; width: 80px;"> <img src="imagens/monitoring.png"
-                                width="30px"> Monitoramento
+                                width="23px"> Monitoramento
                         </a>
                     </li>
                     <li>
-                        <a href="cadastrar.html"> <img src="imagens/editing.png" width="25px"> Cadastrar
+                        <a href="cadastrar.html"> <img src="imagens/editing.png" width="23px"> Cadastrar
                         </a>
                     </li>
                 </ul>
@@ -44,27 +47,36 @@
 
         </div>
 
-        <div id="table_container">
-            <table id="table">
-                <tr>
-                    <h2>MÁQUINAS</h2>
-                </tr>
-                <tr class="th_names">
-                    <td>ID</td>
-                    <td>IP</td>
-                    <td>OS</td>
-                    <td>STATUS</td>
-                    <td>ÚLTIMO HEARTBEAT</td>
-                    <td>LIMITE MEMÓRIA</td>
-                    <td>LIMITE PROCESSAMENTO</td>
-                    <td>LIMITE DISCO</td>
-                </tr>
-                <tbody class="list" id="list">
-
-
-                </tbody>
-            </table>
-        </div>
+        
+            <div id="table_container">
+                <table id="table">
+                    <tr>
+                        <h2>MÁQUINAS</h2>
+                    </tr>
+                    <tr class="th_names">
+                        <td>ID</td>
+                        <td>IP</td>
+                        <td>OS</td>
+                        <td>STATUS</td>
+                        <td>ÚLTIMO<br>HEARTBEAT</td>
+                        <td>LIMITE MEMÓRIA</td>
+                        <td>LIMITE PROCESSAMENTO</td>
+                        <td>LIMITE DISCO</td>
+                    </tr>
+                    <tbody class="list" id= list>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <section id="paginate">
+                <div class="pagination">
+                    <div class="prev">&lt;</div>
+                    <div class="numbers">
+                        <div>1</div>
+                    </div>
+                    <div class="next">&gt;</div>
+                </div>
+            </section>
     </div>
 
     <script src="Script/scriptIndex.js"></script>

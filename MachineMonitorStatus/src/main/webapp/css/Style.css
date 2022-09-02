@@ -4,8 +4,8 @@
     padding:0;
 }
 body{
-	font-family: 'Poppins', sans-serif;
-	background: #FFF;
+	font-family: 'Poppins';
+	background: #F8F8FF;
 }
 
 ul{
@@ -26,7 +26,7 @@ ul{
 #navegacao ul{
 	position: relative;
 	float: right;
-	width: 27%;
+	width: 24%;
 	height: 97px;
 }
 
@@ -36,6 +36,7 @@ ul{
 
 #navegacao ul a{
 	width: 60px;
+	font-weight: 600;
 	font-size: 12px;
 	line-height: 18px;
 	text-align: center;
@@ -47,7 +48,7 @@ ul{
 
 #header_container{
 	width: 100%;
-	height: 90px;
+	height: 80px;
 	background: #FCFCFC;
 	box-shadow: 1px 1px 15px rgba(183, 183, 183, 0.25);
 	border-radius: 0px;
@@ -59,17 +60,17 @@ ul{
 	padding: 0 10px;
 	align-items: center;
 	background: #FFFFFF;
-	margin: 5em auto;
+	margin: 4em auto;
 	width: 50%;
-	height: 80px;
+	height: 70px;
 	box-shadow: 0px 0px 20px rgba(214, 214, 214, 0.25);
 	border-radius: 10px;
 }
 
 #filtro{
 	padding: 5px;
-	width: 50%;
-	height: 40px;
+	width: 40%;
+	height: 35px;
 	border: 2px solid rgba(196, 196, 196, 0.63);
 	border-radius: 100px;
 	display: block;
@@ -82,6 +83,7 @@ ul{
 	height: 100%;
 	background: transparent;
 	outline: none;
+	font-family: 'Poppins';
 
 }
 
@@ -106,24 +108,29 @@ ul{
 }
 
 #date{
+	width: 20%;
 	box-sizing: border-box;
 	padding: 10px;
 	background: rgba(255, 255, 255, 0.8);
 	border: 2px solid rgba(196, 196, 196, 0.65);
 	border-radius: 15px;
 	color: rgba(64, 169, 68, 0.8);
+	font-family: 'Poppins';
 	font-weight: 500;
+	font-size: 11px;
 	text-transform: uppercase;
 }
 
 #filter-button{
 	border: none;
 	width: 120px;
-	height: 40px;
+	height: 35px;
 	background: rgba(64, 169, 68, 0.8);
 	box-shadow: 0px 4px 12px rgba(148, 148, 148, 0.25);
 	border-radius: 100px;
 	color: #FFFFFF;
+	font-family: 'Poppins';
+	font-size: 15px;
 	font-weight: 700;
 	text-align: center;
 	cursor: pointer;
@@ -139,10 +146,11 @@ ul{
 }
 
 #table_container{
+	background: #FFFFFF;
 	margin: 3em auto;
-	width: 75%;
-	border-radius: 20px 20px 0px 0px;
-	background: #CA2F2F 90%;
+	width: 85%;
+	box-shadow: 0px 0px 15px rgba(199, 199, 199, 0.25);
+	border-radius: 20px;
 }
 
 #table{
@@ -150,28 +158,63 @@ ul{
 	align-items: center;
 	text-align: center;
 	background: #FFFFFF;
+	border-radius: 0px 0px 20px 20px;
 
 }
 
 #table_container h2 {
 	color: #FFFFFF;
-	padding: 15px 0 ;
-	height: 50px;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 23px;
+	padding: 10px 0 ;
+	height: 45px;
 	text-align: center;
+	background: rgba(202, 47, 47, 0.9);
 	border-radius: 20px 20px 0px 0px;
 }
 
+
 #table td{
 	width: 10%;
-	color: #FFFFFF;
+	font-weight: 500;
+	text-align: center;
+	border-bottom: 1px solid #E7E7E7;
+	border-left: 1px solid #E7E7E7;
+}
+#paginate{
+	margin: 2em auto;
+	padding-left: 15px;
+	background: none;
 }
 
-.th_names{
-	width: 100%;
-	height: 50px;
-	background: #CA2F2F 90%;
+#paginate .pagination{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
+#paginate .pagination div:not(.numbers){
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	border-radius: 50%;
+}
+#paginate .pagination div:not(.numbers),
+#paginate .pagination div.numbers div{
+	width: 40px;
+	height: 40px;
+	margin: 4px;
+	border: 1px solid red;
+}
+
+#paginate .pagination div.numbers div:hover,
+#paginate .pagination div.numbers div.active{
+	color: #ffffff;
+	background: rgba(227, 0, 0, 0.8);
+}
 
 .logo{
 	position: absolute;
@@ -180,4 +223,36 @@ ul{
 	left: 40px;
 	top: 25px;
 	border-radius: 10px;
+}
+
+.th_names{
+	width: 100%;
+	height: 45px;
+	background: rgba(202, 47, 47, 0.9);
+	font-family: 'Poppins';
+	font-weight: 700;
+	font-size: 14px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.th_names td{
+	color: #FFFFFf;
+}
+
+.numbers{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	border-radius: 100px;
+	background: #FFFFFF;
+	box-shadow: 0px 2px 10px rgba(209, 209, 209, 0.25);
+}
+
+.pagination .prev,
+.pagination .next,
+.active{
+	color: #ffffff;
+	background: rgba(227, 0, 0, 0.8);
 }
