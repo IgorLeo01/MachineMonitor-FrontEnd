@@ -1,17 +1,27 @@
-/* const url = `http://192.168.0.221:8080/MachineMonitor/registers`
+const urlGet = `http://192.168.0.221:8080/MachineMonitor/registers`
 const options = {
     method: 'GET',
-    mode: 'cors',
-    cache: 'default',
+    mode: "no-cors",
+    headers: {
+        "Content-Type": "application/json",
+    }
 }
-fetch(url, options)
-    .then((response) => {
-        return response.json()
-            .then((responseData) => console.log(responseData))
-    })
-    .catch(e => console.Log('Deu error: ' + e.message))
- */
-    
+    function getData(){
+        let request = new XMLHttpRequest()
+        request.open("GET", urlGet, false)
+        request.send()
+        return request.responseText
+    }
+
+    let responseData = {
+        get (){
+            dados = getData()
+            machines = JSON.parse(dados)
+            return machines
+        }
+
+    }
+  
     var machine = {
         id: 1,
         ip: "192.168.1.1",
@@ -38,14 +48,14 @@ fetch(url, options)
         tdLimiteProcessamento = document.createElement("td")
         tdLimiteDisco = document.createElement("td")
 
-        tdId.innerHTML = machine.id
-        tdIp.innerHTML = machine.ip
-        tdOs.innerHTML = machine.os
-        tdStatus.innerHTML = machine.status
-        tdLastHeartbeat.innerHTML = machine.lastHeartbeat
-        tdLimiteMemoria.innerHTML = machine.limiteMemoria
-        tdLimiteProcessamento.innerHTML = machine.limiteProcessamento
-        tdLimiteDisco.innerHTML = machine.limiteDisco
+        tdId.innerHTML = machine.mchID
+        tdIp.innerHTML = machine.mchIP
+        tdOs.innerHTML = machine.mchOS
+        tdStatus.innerHTML = machine.mchStatus
+        tdLastHeartbeat.innerHTML = new Date(machine.mchLatestHeartBeat).toISOString().replace(/t|z/gi," ").replace(/.000/gi,"")
+        tdLimiteMemoria.innerHTML = machine.mchLimitMemory
+        tdLimiteProcessamento.innerHTML = machine.mchLimitProcessing
+        tdLimiteDisco.innerHTML = machine.mchLimitDisk
 
         linha.appendChild(tdId)
         linha.appendChild(tdIp)
@@ -132,8 +142,8 @@ const list = {
 		let page = state.page - 1
 		let start = page * state.perPage //Determina a qnt de paginas
 		let end = start + state.perPage
-
-		const paginatedItens = data.slice(start, end)
+        const dados = responseData.get().Machines
+		const paginatedItens = dados.slice(start, end)
 		paginatedItens.forEach(list.create)
     }
 }
@@ -161,7 +171,6 @@ const buttons = {
     update(){
         this.element.innerHTML = ""
         const {maxLeft, maxRight} = buttons.calculateMaxVisible()
-        console.log(maxLeft, maxRight)
         for(let page = maxLeft; page <= maxRight; page++){
             buttons.create(page)
         }
