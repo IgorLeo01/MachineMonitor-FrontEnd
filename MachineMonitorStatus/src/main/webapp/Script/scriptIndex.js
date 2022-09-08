@@ -40,6 +40,7 @@ const options = {
     function criaLinha(machine) {
         linha = document.createElement("tr")
         tdId = document.createElement("td")
+        tdId.classList.add('firstColumn')
         tdIp = document.createElement("td")
         tdOs = document.createElement("td")
         tdStatus = document.createElement("td")
@@ -48,6 +49,12 @@ const options = {
         tdLimiteProcessamento = document.createElement("td")
         tdLimiteDisco = document.createElement("td")
 
+        if(machine.mchStatus == "fail"){
+            tdStatus.classList.add('statusFail')
+        }else{
+            tdStatus.classList.add('status')
+        }
+        
         tdId.innerHTML = machine.mchID
         tdIp.innerHTML = machine.mchIP
         tdOs.innerHTML = machine.mchOS

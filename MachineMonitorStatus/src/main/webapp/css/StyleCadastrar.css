@@ -116,7 +116,7 @@ textarea{
 	color: #6D6D6D;
 }
 
-#descricao{
+#description{
 	padding: 5px;
 	background: transparent;
 	outline: none;
@@ -140,7 +140,13 @@ textarea{
 	text-align: center;
 	color: #40A944;
 }
+#btnCadastrar:hover {
+	border: 3px solid rgba(64, 169, 68, 0.25);
+}
 
+#btnCadastrar:active {
+	margin-top: 3px;
+}
 .machine_data{
 	width: 40%;
 }

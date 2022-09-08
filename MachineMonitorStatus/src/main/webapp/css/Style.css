@@ -267,3 +267,23 @@ ul{
 	color: #ffffff;
 	background: rgba(227, 0, 0, 0.8);
 }
+
+.firstColumn{
+	border-left:none;
+}
+
+.status{
+	font-family: 'Poppins';
+	font-weight: 600;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #40A944;
+}
+
+.statusFail{
+	font-family: 'Poppins';
+	font-weight: 600;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: rgba(227, 0, 0, 0.8);
+}

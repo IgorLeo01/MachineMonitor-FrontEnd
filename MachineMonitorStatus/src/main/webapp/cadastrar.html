@@ -35,19 +35,21 @@
         <div id="cadastro_container">
         	<h1>Cadastrar Máquina</h1>
         	<div id="dataInputs"> 
-        		<input type="text" name="IP" style="width: 85%;" placeholder="IP">
-        		<input type="text" name="limite-de-memoria" class="machine_data" placeholder="Limite de Memória">
-        		<input type="text" name="limite-de-processamento" class="machine_data" placeholder="Limite de Processamento">
-        		<input type="text" name="limite-de-disco" class="machine_data" placeholder="Limite de Disco">
-        		<input type="text" name="nome-da-maquina" class="machine_data" placeholder="Nome da Máquina">
+        		<input type="text" name="IP" style="width: 85%;" placeholder="IP" id="ip">
+        		<input type="text" name="limite-de-memoria" class="machine_data" placeholder="Limite de Memória" id="limitMemory">
+        		<input type="text" name="limite-de-processamento" class="machine_data" placeholder="Limite de Processamento" id="limitProcessing">
+        		<input type="text" name="limite-de-disco" class="machine_data" placeholder="Limite de Disco" id="limitDisk">
+        		<input type="text" name="nome-da-maquina" class="machine_data" placeholder="Nome da Máquina" id="name">
         		<div id="descriptionBox">
         			<h2>Descrição</h2>
-        			<textarea id="descricao"></textarea>
+        			<textarea id="description"></textarea>
         		</div>
         		<button id="btnCadastrar">Cadastrar</button>
         		
         	</div>
         </div>
     </div><!-- Fim Principal-->
+
+    <script src="Script/scriptCadastrar.js"></script>
 </body>
 </html>
