@@ -30,8 +30,8 @@ textarea{
 #navegacao ul{
 	position: relative;
 	float: right;
-	width: 27%;
-	height: 97px;
+	width: 24%;
+	height: 80px;
 }
 
 #navegacao ul li{
@@ -47,7 +47,7 @@ textarea{
 	display: block;
 	text-decoration: none;
 	color: #6D6D6D;
-	padding-top: 2em;
+	padding-top: 1.5em;
 }
 
 #header_container{
