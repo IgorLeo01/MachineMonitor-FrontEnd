@@ -15,11 +15,11 @@ const inputs = {
     getInputs(){
         const machine = {
 			IP: document.getElementById('ip').value,
-			memoryLen: document.getElementById('limitMemory').value,
-			processingSpeed: document.getElementById('limitProcessing').value,
-			diskLen: document.getElementById('limitDisk').value,
-			Name: document.getElementById('name').value,
-			additionalInfo: document.getElementById('description').value,
+			limitMemory: document.getElementById('limitMemory').value,
+			limitProcessing: document.getElementById('limitProcessing').value,
+			limitDisk: document.getElementById('limitDisk').value,
+			name: document.getElementById('name').value,
+			description: document.getElementById('description').value,
         }
         return machine 
     }

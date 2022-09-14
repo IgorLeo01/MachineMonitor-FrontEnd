@@ -49,20 +49,21 @@ const options = {
         tdLimiteProcessamento = document.createElement("td")
         tdLimiteDisco = document.createElement("td")
 
-        if(machine.mchStatus == "fail"){
+        if(machine.status == false){
             tdStatus.classList.add('statusFail')
+            machine.status = "fail"
         }else{
             tdStatus.classList.add('status')
         }
         
         tdId.innerHTML = machine.mchID
-        tdIp.innerHTML = machine.mchIP
-        tdOs.innerHTML = machine.mchOS
-        tdStatus.innerHTML = machine.mchStatus
-        tdLastHeartbeat.innerHTML = new Date(machine.mchLatestHeartBeat).toISOString().replace(/t|z/gi," ").replace(/.000/gi,"")
-        tdLimiteMemoria.innerHTML = machine.mchLimitMemory
-        tdLimiteProcessamento.innerHTML = machine.mchLimitProcessing
-        tdLimiteDisco.innerHTML = machine.mchLimitDisk
+        tdIp.innerHTML = machine.IP
+        tdOs.innerHTML = machine.OS
+        tdStatus.innerHTML = machine.status
+        tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi," ").replace(/.000/gi,"")
+        tdLimiteMemoria.innerHTML = machine.limitMemory
+        tdLimiteProcessamento.innerHTML = machine.limitProcessing
+        tdLimiteDisco.innerHTML = machine.limitDisk
 
         linha.appendChild(tdId)
         linha.appendChild(tdIp)
