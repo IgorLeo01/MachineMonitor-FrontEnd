@@ -84,6 +84,7 @@ function populateList(item) {
 
 //==================================================================================
 let data = responseData.get(urlGet).Machines
+//Configura dados da Paginação da tabela
 let perPage = 10
 const state = {
     page: 1,
@@ -91,13 +92,14 @@ const state = {
     totalPage: Math.ceil(data.length / perPage),
     maxVisibleButtons: 5,
 }
-
+//busca algum elemento HTML
 const html = {
     get(element) {
         return document.querySelector(element)
     }
 }
 
+//Controles dos botões de paginação: previous, next.
 const controls = {
     next() {
         state.page++
@@ -201,13 +203,31 @@ const buttons = {
 }
 
 const filters = {
-    ip() {
+    click() {
         html.get('#filter-button').addEventListener('click', () => {
             const ip = html.get('#input').value
-            if (ip !== '') {
-                data = responseData.get(urlGet + "?ip=" + ip).Machines
+            let date = html.get('#date').value
+                console.log(date)
+            if (ip !== '' && date === '') {
+                var url =urlGet + "?ip=" + ip
+                data = responseData.get(url).Machines
                 update()
-                return 1
+                return console.log(1)
+            }
+
+            if (ip === '' && date !== '') {
+                url = urlGet + "?data=" + date + " 11:11:11"
+                console.log(url)
+                data = responseData.get(url).Machines
+                update()
+                return console.log(2)
+            }
+
+            if (ip !== '' && date !== '') {
+                url = urlGet + "?ip=" + ip + "&" + "data=" + date
+                data = responseData.get(urlGet + "?ip=" + ip + "&" + "data=" + date).Machines
+                update()
+                return console.log(3)
             }
             data = responseData.get(urlGet).Machines
             update()
@@ -224,7 +244,7 @@ function update() {
 function init() {
     update()
     controls.createListeners()
-    filters.ip()
+    filters.click()
 }
 
 init()
