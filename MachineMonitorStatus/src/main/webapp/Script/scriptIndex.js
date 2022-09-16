@@ -6,89 +6,85 @@ const options = {
         "Content-Type": "application/json",
     }
 }
-    function getData(){
-        let request = new XMLHttpRequest()
-        request.open("GET", urlGet, false)
-        request.send()
-        return request.responseText
+//Executa requisição HTTP Get
+function getData(url) {
+    let request = new XMLHttpRequest()
+    request.open("GET", url, false)
+    request.send()
+    return request.responseText
+}
+//Restorna os dados e elementos consedidos pela API
+let responseData = {
+    get(url) {
+        var dados = getData(url)
+        machines = JSON.parse(dados)
+        return machines
     }
 
-    let responseData = {
-        get (){
-            dados = getData()
-            machines = JSON.parse(dados)
-            return machines
-        }
+}
 
+//Coloca os dados do elemento nas devidas colunas da tabela
+function criaLinha(machine) {
+    linha = document.createElement("tr")
+    linha.classList.add('linha')
+    tdId = document.createElement("td")
+    tdId.classList.add('firstColumn')
+    tdIp = document.createElement("td")
+    tdIp.classList.add('item')
+    tdOs = document.createElement("td")
+    tdOs.classList.add('item')
+    tdStatus = document.createElement("td")
+    tdStatus.classList.add('item')
+    tdLastHeartbeat = document.createElement("td")
+    tdLastHeartbeat.classList.add('item')
+    tdLimiteMemoria = document.createElement("td")
+    tdLimiteMemoria.classList.add('item')
+    tdLimiteProcessamento = document.createElement("td")
+    tdLimiteProcessamento.classList.add('item')
+    tdLimiteDisco = document.createElement("td")
+    tdLimiteDisco.classList.add('item')
+
+    if (machine.status == false) {
+        tdStatus.classList.add('statusFail')
+        machine.status = "fail"
+    } else {
+        tdStatus.classList.add('status')
     }
-  
-    var machine = {
-        id: 1,
-        ip: "192.168.1.1",
-        os:"windows",
-        status: "OK",
-        lastHeartbeat: new Date().toISOString(),
-        limiteMemoria: "40%",
-        limiteProcessamento: "30%",
-        limiteDisco: "30%"
-    }
 
-    const data = Array.from({length:20})
-        .map((_, i) => machine)
-    
-    
-    function criaLinha(machine) {
-        linha = document.createElement("tr")
-        tdId = document.createElement("td")
-        tdId.classList.add('firstColumn')
-        tdIp = document.createElement("td")
-        tdOs = document.createElement("td")
-        tdStatus = document.createElement("td")
-        tdLastHeartbeat = document.createElement("td")
-        tdLimiteMemoria = document.createElement("td")
-        tdLimiteProcessamento = document.createElement("td")
-        tdLimiteDisco = document.createElement("td")
+    tdId.innerHTML = machine.mchID
+    tdIp.innerHTML = machine.IP
+    tdOs.innerHTML = machine.OS
+    tdStatus.innerHTML = machine.status
+    tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi, " ").replace(/.000/gi, "")
+    tdLimiteMemoria.innerHTML = machine.limitMemory
+    tdLimiteProcessamento.innerHTML = machine.limitProcessing
+    tdLimiteDisco.innerHTML = machine.limitDisk
 
-        if(machine.status == false){
-            tdStatus.classList.add('statusFail')
-            machine.status = "fail"
-        }else{
-            tdStatus.classList.add('status')
-        }
-        
-        tdId.innerHTML = machine.mchID
-        tdIp.innerHTML = machine.IP
-        tdOs.innerHTML = machine.OS
-        tdStatus.innerHTML = machine.status
-        tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi," ").replace(/.000/gi,"")
-        tdLimiteMemoria.innerHTML = machine.limitMemory
-        tdLimiteProcessamento.innerHTML = machine.limitProcessing
-        tdLimiteDisco.innerHTML = machine.limitDisk
+    linha.appendChild(tdId)
+    linha.appendChild(tdIp)
+    linha.appendChild(tdOs)
+    linha.appendChild(tdStatus)
+    linha.appendChild(tdLastHeartbeat)
+    linha.appendChild(tdLimiteMemoria)
+    linha.appendChild(tdLimiteProcessamento)
+    linha.appendChild(tdLimiteDisco)
 
-        linha.appendChild(tdId)
-        linha.appendChild(tdIp)
-        linha.appendChild(tdOs)
-        linha.appendChild(tdStatus)
-        linha.appendChild(tdLastHeartbeat)
-        linha.appendChild(tdLimiteMemoria)
-        linha.appendChild(tdLimiteProcessamento)
-        linha.appendChild(tdLimiteDisco)
-
-        return linha
-    }
-    
-    function populateList(item){
-        const list = document.querySelector('.list')
-        item.forEach(element => {
-            let linha = criaLinha(element)
-            list.appendChild(linha)
+    return linha
+}
+//popula a tabelacom os elementos recebidos da API
+function populateList(item) {
+    const list = document.querySelector('.list')
+    item.forEach(element => {
+        let linha = criaLinha(element)
+        list.appendChild(linha)
     })
 
-    return item 
+    return item
 }
 
 //==================================================================================
-let perPage = 5
+let data = responseData.get(urlGet).Machines
+let perPage = 10
 const state = {
     page: 1,
     perPage,
@@ -97,29 +93,29 @@ const state = {
 }
 
 const html = {
-    get(element){
+    get(element) {
         return document.querySelector(element)
     }
 }
 
 const controls = {
-    next(){
+    next() {
         state.page++
         const lastPage = state.page > state.totalPage
-        if(lastPage){
-            state.page --
+        if (lastPage) {
+            state.page--
         }
     },
-    prev(){
+    prev() {
         state.page--
-        if( state.page < 1){
-            state.page ++
+        if (state.page < 1) {
+            state.page++
         }
-    }, 
+    },
     goTo(page) {
-		if (page < 1) {
-			page = 1
-	    }
+        if (page < 1) {
+            page = 1
+        }
 
         state.page = +page
 
@@ -127,7 +123,7 @@ const controls = {
             state.page = state.totalPage
         }
     },
-    createListeners(){ 
+    createListeners() {
         html.get('.next').addEventListener('click', () => {
             controls.next()
             update()
@@ -140,30 +136,29 @@ const controls = {
     }
 }
 const list = {
-    create(item){
+    create(item) {
         item.id = state.page
         let linha = criaLinha(item)
         html.get('.list').appendChild(linha)
     },
-    update(){
+    update() {
         html.get('.list').innerHTML = "" //Limpa a pagina 
-		let page = state.page - 1
-		let start = page * state.perPage //Determina a qnt de paginas
-		let end = start + state.perPage
-        const dados = responseData.get().Machines
-		const paginatedItens = dados.slice(start, end)
-		paginatedItens.forEach(list.create)
+        let page = state.page - 1
+        let start = page * state.perPage //Determina a qnt de paginas
+        let end = start + state.perPage
+        const paginatedItens = data.slice(start, end)
+        paginatedItens.forEach(list.create)
     }
 }
 
 const buttons = {
-    element:  html.get('.pagination .numbers'),
-    create(number){
+    element: html.get('.pagination .numbers'),
+    create(number) {
         const button = document.createElement('div')
-        
+
         button.innerHTML = number
 
-        if(state.page == number) {
+        if (state.page == number) {
             button.classList.add('active')
         }
 
@@ -174,45 +169,62 @@ const buttons = {
             update()
         })
 
-       this.element.appendChild(button)
+        this.element.appendChild(button)
     },
-    update(){
+    update() {
         this.element.innerHTML = ""
-        const {maxLeft, maxRight} = buttons.calculateMaxVisible()
-        for(let page = maxLeft; page <= maxRight; page++){
+        const { maxLeft, maxRight } = buttons.calculateMaxVisible()
+        for (let page = maxLeft; page <= maxRight; page++) {
             buttons.create(page)
         }
     },
-    calculateMaxVisible(){
-        let maxLeft = (state.page -Math.floor(state.maxVisibleButtons/2))
-        let maxRight = (state.page + Math.floor(state.maxVisibleButtons/2))
-        
-        if(maxLeft < 1){
+    calculateMaxVisible() {
+        let maxLeft = (state.page - Math.floor(state.maxVisibleButtons / 2))
+        let maxRight = (state.page + Math.floor(state.maxVisibleButtons / 2))
+
+        if (maxLeft < 1) {
             maxLeft = 1
             maxRight = state.maxVisibleButtons
         }
 
-        if(maxRight > state.totalPage){
+        if (maxRight > state.totalPage) {
             maxLeft = state.totalPage - (state.maxVisibleButtons - 1)
             maxRight = state.totalPage
 
-            if(maxLeft < 1)
+            if (maxLeft < 1)
                 maxLeft = 1
         }
 
-        return {maxLeft, maxRight}
+        return { maxLeft, maxRight }
     }
-    
+
 }
 
-function update(){
+const filters = {
+    ip() {
+        html.get('#filter-button').addEventListener('click', () => {
+            const ip = html.get('#input').value
+            if (ip !== '') {
+                data = responseData.get(urlGet + "?ip=" + ip).Machines
+                update()
+                return 1
+            }
+            data = responseData.get(urlGet).Machines
+            update()
+            return 0
+        })
+    }
+}
+
+function update() {
     list.update()
     buttons.update()
 }
 
-function init(){
+function init() {
     update()
     controls.createListeners()
+    filters.ip()
 }
 
 init()

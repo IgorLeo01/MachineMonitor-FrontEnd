@@ -139,6 +139,7 @@ textarea{
 	line-height: 30px;
 	text-align: center;
 	color: #40A944;
+	cursor: pointer;
 }
 #btnCadastrar:hover {
 	border: 3px solid rgba(64, 169, 68, 0.25);
