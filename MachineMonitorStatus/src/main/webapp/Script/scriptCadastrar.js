@@ -35,5 +35,8 @@ html.get('#btnCadastrar').addEventListener('click', () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(machine)
-    }).then(e => {console.log(e)})
+    }).then(e => {
+        console.log(e)
+        alert("Máquina cadastrada com sucesso.")
+    })
 })

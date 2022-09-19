@@ -55,7 +55,8 @@ function criaLinha(machine) {
     tdIp.innerHTML = machine.IP
     tdOs.innerHTML = machine.OS
     tdStatus.innerHTML = machine.status
-    tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi, " ").replace(/.000/gi, "")
+    if(machine.latestHeartBeat != null) 
+        tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi, " ").replace(/.000/gi, "")
     tdLimiteMemoria.innerHTML = machine.limitMemory
     tdLimiteProcessamento.innerHTML = machine.limitProcessing
     tdLimiteDisco.innerHTML = machine.limitDisk
@@ -137,6 +138,7 @@ const controls = {
         })
     }
 }
+//lista as Machinas recebidas da API
 const list = {
     create(item) {
         item.id = state.page
@@ -152,7 +154,7 @@ const list = {
         paginatedItens.forEach(list.create)
     }
 }
-
+//configura os botões de paginação, criando, atualizando e definindo quantos devem aparecer
 const buttons = {
     element: html.get('.pagination .numbers'),
     create(number) {
@@ -201,7 +203,7 @@ const buttons = {
     }
 
 }
-
+//filtros de Ip, data ou ambos
 const filters = {
     click() {
         html.get('#filter-button').addEventListener('click', () => {
@@ -216,7 +218,7 @@ const filters = {
             }
 
             if (ip === '' && date !== '') {
-                url = urlGet + "?data=" + date + " 11:11:11"
+                url = urlGet + "?data=" + date 
                 console.log(url)
                 data = responseData.get(url).Machines
                 update()
@@ -235,12 +237,12 @@ const filters = {
         })
     }
 }
-
+//faz a atualização dos botões de paginação
 function update() {
     list.update()
     buttons.update()
 }
-
+//inicia os controles de paginação
 function init() {
     update()
     controls.createListeners()
