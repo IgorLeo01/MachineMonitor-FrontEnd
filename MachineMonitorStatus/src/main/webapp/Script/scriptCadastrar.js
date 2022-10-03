@@ -1,9 +1,10 @@
+//busca um elemento html no documento
 const html = {
     get(element){
         return document.querySelector(element)
     }
 }
-
+//opções da requisição HTTP
 const options = {
     method: 'Post',
     mode: "no-cors",
@@ -11,6 +12,7 @@ const options = {
         "Content-Type": "application/json",
     }
 }
+//captura os dados digitados pelo usuário nos iputs da página
 const inputs = {
     getInputs(){
         const machine = {
@@ -24,8 +26,7 @@ const inputs = {
         return machine 
     }
 }
-
-
+//Evento de click do botão cadastrar 
 html.get('#btnCadastrar').addEventListener('click', () => {
     const machine = inputs.getInputs()
     fetch(`http://192.168.0.221:8080/MachineMonitor/machine`, {

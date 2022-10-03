@@ -1,4 +1,5 @@
 const urlGet = `http://192.168.0.221:8080/MachineMonitor/registers`
+//opções da requisição HTTP
 const options = {
     method: 'GET',
     mode: "no-cors",
@@ -13,7 +14,7 @@ function getData(url) {
     request.send()
     return request.responseText
 }
-//Restorna os dados e elementos consedidos pela API
+//Restorna os dados e elementos concedidos pela API
 let responseData = {
     get(url) {
         var dados = getData(url)
@@ -50,13 +51,20 @@ function criaLinha(machine) {
     } else {
         tdStatus.classList.add('status')
     }
-
+    
     tdId.innerHTML = machine.mchID
     tdIp.innerHTML = machine.IP
-    tdOs.innerHTML = machine.OS
+
+    if(machine.OS === undefined || machine.OS===null){
+        tdOs.innerHTML = ""
+    }
+    else{
+        tdOs.innerHTML = machine.OS
+    }
+        
     tdStatus.innerHTML = machine.status
-    if(machine.latestHeartBeat != null) 
-        tdLastHeartbeat.innerHTML = new Date(machine.latestHeartBeat).toISOString().replace(/t|z/gi, " ").replace(/.000/gi, "")
+    if(machine.latestHeartBeat != null ) 
+        tdLastHeartbeat.innerHTML = machine.latestHeartBeat
     tdLimiteMemoria.innerHTML = machine.limitMemory
     tdLimiteProcessamento.innerHTML = machine.limitProcessing
     tdLimiteDisco.innerHTML = machine.limitDisk
@@ -72,7 +80,7 @@ function criaLinha(machine) {
 
     return linha
 }
-//popula a tabelacom os elementos recebidos da API
+//popula a tabela com os elementos recebidos da API
 function populateList(item) {
     const list = document.querySelector('.list')
     item.forEach(element => {
@@ -83,7 +91,8 @@ function populateList(item) {
     return item
 }
 
-//==================================================================================
+//===========================================================================================================================
+
 let data = responseData.get(urlGet).Machines
 //Configura dados da Paginação da tabela
 let perPage = 10
