@@ -7,7 +7,12 @@ function fazGet(url) {
 	return request.responseText
 }
 
-function criaLinha(machine) {
+function initLevelColor(){
+	
+}
+
+
+function criaLinha(machine, heartbeat) {
 	linha = document.createElement("tr");
 	linha.classList.add('linha');
 	tdId = document.createElement("td");
@@ -47,18 +52,24 @@ function criaLinha(machine) {
 	tdNome.innerHTML = machine.name
 	tdIp.innerHTML = machine.IP
 	tdOs.innerHTML = machine.OS ? machine.OS : ""
+	tdMemoryLevel.innerHTML = heartbeat.memoryLevel
 	tdDesc.innerHTML = '<span class="desc-machine">' + machine.description + '</span>'
 	tdStatus.innerHTML = machine.status ? '<span style="color:#40A944">OK</span>' : '<span style="color:#E93333">FAIL</span>'
-	tdMemoryLevel = machine.memoryLevel
-	tdProcesisngLevel = machine.processingLevel
-	tdDiskLevel = machine.disklevel
+	
+	tdProcessingLevel.innerHTML  = heartbeat.processingLevel 
+	tdDiskLevel.innerHTML  = heartbeat.disklevel
+	
 
-	const memory_str = "<span class='info-memory-state'>" +
+	
+	var info_memory_state = document.createElement('span');
+	info_memory_state.classList.add('info-memory-state');
+
+	const body_memorystr = "<span class='info-memory-state'>" +
                     "<span class='info-memory-state-item'>"+
                         "<div class='i-state'>"+
                     		"<img src='imagens/speedometer 1.png' alt=''>"+
                         "</div>"+
-                        "<span>"+(machine.memoryLevel)+ "</span>"+
+                        "<span>"+ (heartbeat.memoryLevel)+'%'+ "</span>"+
                     "</span>"+
                     "<span class='divider'>"+
                         "<img src='imagens/Rectangle 25.png' alt=''>"+
@@ -67,17 +78,36 @@ function criaLinha(machine) {
                         "<div class='i-state'>"+
                          	"<img src='imagens/Ellipse 24.png' alt=''>"+
                             "<span>max</span>"+
-                        "</div>"+
+                        "</div>"+               
                         "<span>"+(machine.limitMemory)+"%"+"</span>"+
-                    "</span>"+
-                "</span>";
+                    "</span>";
+                    
+                    console.log(heartbeat.memoryLevel);
+					var percentvaluememory = ((heartbeat.memoryLevel != undefined? heartbeat.memoryLevel: 0)/machine.limitMemory) * 100;					
+
+					console.log(percentvaluememory+"************");   
+					               
+                    info_memory_state.innerHTML = body_memorystr            
                 
-     const process_str = "<span class='info-memory-state'>" +
+                if ( percentvaluememory < ((90/100) * machine.limitMemory)) {
+					tdMemory.style.backgroundColor =  'rgba(104, 250, 110, 0.28)'
+					
+				}else if ((percentvaluememory > ((90/100) * machine.limitMemory)) && percentvaluememory < ((100/100) * machine.limitMemory)) {
+					tdMemory.style.backgroundColor = 'rgba(250, 192, 104, 0.28)'
+					
+				}else  {
+					tdMemory.style.backgroundColor = 'rgba(250, 104, 104, 0.28)'}
+
+                
+                var info_process_state = document.createElement('span');
+				info_process_state.classList.add('info-memory-state');
+                
+     const body_processStr = "<span class='info-memory-state'>" +
                     "<span class='info-memory-state-item'>"+
                         "<div class='i-state'>"+
                     		"<img src='imagens/speedometer 1.png' alt=''>"+
                         "</div>"+
-                        "<span>txt1</span>"+
+                        "<span>"+ (heartbeat.processingLevel)+ '%' +"</span>"+
                     "</span>"+
                     "<span class='divider'>"+
                         "<img src='imagens/Rectangle 25.png' alt=''>"+
@@ -91,12 +121,31 @@ function criaLinha(machine) {
                     "</span>"+
                 "</span>";
                 
-      const disk_str = "<span class='info-memory-state'>" +
+                var percentvalueprocess = ((heartbeat.processingLevel != undefined? heartbeat.processingLevel: 0)/machine.limitProcessing) * 100;					
+
+					console.log(percentvalueprocess+"************");   
+					               
+                    info_process_state.innerHTML = body_processStr            
+                
+                if ( percentvalueprocess < ((90/100) * machine.limitProcessing)) {
+					tdProcess.style.backgroundColor =  'rgba(104, 250, 110, 0.28)'
+					
+				}else if ((percentvalueprocess > ((90/100) * machine.limitProcessing)) && percentvalueprocess < ((100/100) * machine.limitProcessing)) {
+					tdProcess.style.backgroundColor = 'rgba(250, 192, 104, 0.28)'
+					
+				}else  {
+					tdProcess.style.backgroundColor = 'rgba(250, 104, 104, 0.28)'}
+  
+  				var info_disk_state = document.createElement('span');
+				info_disk_state.classList.add('info-memory-state');
+  
+                
+      const body_diskStr = "<span class='info-memory-state'>" +
                     "<span class='info-memory-state-item'>"+
                         "<div class='i-state'>"+
                     		"<img src='imagens/speedometer 1.png' alt=''>"+
                         "</div>"+
-                        "<span>txt2</span>"+
+                        "<span>"+ (heartbeat.diskLevel)+ '%' +"</span>"+
                     "</span>"+
                     "<span class='divider'>"+
                         "<img src='imagens/Rectangle 25.png' alt=''>"+
@@ -106,18 +155,37 @@ function criaLinha(machine) {
                          	"<img src='imagens/Ellipse 24.png' alt=''>"+
                             "<span>max</span>"+
                         "</div>"+
+                         "<div class='balloon'>"+
+                        (machine.systemDiskLen ? `Tamanho: ${machine.systemDiskLen} GB`: "Tamanho não disponível")+
+                        "</div>"+
                         "<span>"+(machine.limitDisk)+"%"+"</span>"+
                     "</span>"+
                 "</span>";
+                
+                 var percentvaluedisk = ((heartbeat.diskLevel != undefined? heartbeat.diskLevel: 0)/machine.limitDisk) * 100;					
+
+					console.log(percentvaluedisk+"************");   
+					               
+                    info_disk_state.innerHTML = body_diskStr            
+                
+                if ( percentvaluedisk < ((90/100) * machine.limitProcessing)) {
+					tdDisk.style.backgroundColor =  'rgba(104, 250, 110, 0.28)'
+					
+				}else if ((percentvaluedisk > ((90/100) * machine.limitProcessing)) && percentvaluedisk < ((100/100) * machine.limitDisk)) {
+					tdDisk.style.backgroundColor = 'rgba(250, 192, 104, 0.28)'
+					
+				}else  {
+					tdDisk.style.backgroundColor = 'rgba(250, 104, 104, 0.28)'}
 
 	tdLastHeart.innerHTML = '<span class="last-heartbeat">' + (machine.latestHeartBeat ? machine.latestHeartBeat : "") + '</span>'
-	tdProcess.innerHTML = process_str
+	tdProcess.appendChild(info_process_state)
 	//tdProcess.innerHTML = '<span class="process-monitor">' + (machine.processingSpeed ? machine.processingSpeed : "30") + '</span>'
 	//tdLimitProcess.innerHTML = machine.limitProcessing
-	tdMemory.innerHTML = memory_str
+	tdMemory.appendChild(info_memory_state) 
+	//tdMemory.style.backgroundColor = 'red'
 	//tdMemory.innerHTML = '<span class="memory-monitor">'+ (machine.memoryLen ? machine.memoryLen : "30%")+ '</span>'
 	//tdLimitMemory.innerHTML = machine.limitMemory
-	tdDisk.innerHTML = disk_str
+	tdDisk.appendChild(info_disk_state)
 	//tdDisk.innerHTML = '<span class="disk-monitor">' + (machine.systemDiskLen ? machine.systemDiskLen : "30") + " " + machine.limitDisk + '</span>'
 	//tdLimitDisk.innerHTML = machine.limitDisk
 
@@ -135,52 +203,47 @@ function criaLinha(machine) {
 	return linha;
 }
 
-function main(item) {
-	let data = fazGet("http://192.168.0.221:8080/MachineMonitor/registers")
-	let monitors = JSON.parse(data).Machines;
-	let beats = JSON.parse(data).Heartbeat;
-	console.log(beats);
-	let tabela = document.getElementById("list")
-	console.log(monitors);
+let data = fazGet("http://192.168.0.221:8080/MachineMonitor/registers")
+let monitors = JSON.parse(data).Machines;
+let beats = JSON.parse(data).Heartbeat;
+let tabela = document.getElementById("list");
 
-	/*beats.forEach(element => {
 
-		let linha = criaLinha(element);
-		tabela.appendChild(linha);
-		console.log(linha);
-	});*/
 
-	monitors.forEach(element => {
-
-		let linha = criaLinha(element);
-		tabela.appendChild(linha);
-		console.log(linha);
-	});
-
-	return item;
+function main() {
+	
+	//montarTabela(0);
+	
+	init();
+	console.log(monitors.length);
+	console.log(state.totalPage);
+	/*const list = document.querySelector('.list')
+    item.forEach(element => {
+        let linha = criaLinha(element)
+        list.appendChild(linha)
+    })*/
+	//console.log("aaaaaaaaaaaaaa");
+	
 }
 
-main()
 
-//paginação
-let responseData = {
-	get(url) {
-		let dados = fazGet(url)
-		machines = JSON.parse(dados)
-		return machines
-	}
+//-----------------paginação
 
-}
 
-let data = responseData.get(url).Machines
+//let data = responseData.get(url).Machines
+
+
 
 let perPage = 10
+
 const state = {
 	page: 1,
 	perPage,
-	totalPage: Math.ceil(data.length / perPage),
+	totalPage: Math.ceil(monitors.length / perPage),
 	maxVisibleButtons: 5,
 }
+
+
 
 const controls = {
 	next() {
@@ -201,7 +264,7 @@ const controls = {
 			page = 1
 		}
 
-		state.page = +page
+		state.page = page
 
 		if (page > state.totalPage) {
 			state.page = state.totalPage
@@ -221,17 +284,25 @@ const controls = {
 }
 
 const list = {
-	create(item) {
-		item.id = state.page
-		let linha = criaLinha(item)
-		html.get('.list').appendChild(linha)
+	create(monitor) {
+		//item.id = state.page
+		let rs = beats.find(e => e.IP == monitor.IP);
+		if (rs == undefined) {
+			rs = beats[0];
+			rs.memoryLevel = 0; 
+			rs.processingLevel = 0;
+			rs.diskLevel = 0;
+		}
+		let linha = criaLinha(monitor, rs)
+		//html.get("list").appendChild(linha)
+		tabela.appendChild(linha);
 	},
 	update() {
-		html.get('.list').innerHTML = "" 
+		tabela.innerHTML = "" 
 		let page = state.page - 1
 		let start = page * state.perPage 
 		let end = start + state.perPage
-		const paginatedItens = data.slice(start, end)
+		const paginatedItens = monitors.slice(start, end)
 		paginatedItens.forEach(list.create)
 	}
 }
@@ -242,8 +313,9 @@ function update() {
 }
 
 function init() {
-	update()
 	controls.createListeners()
+	update()
+	console.log(state.totalPage)
 }
 
 const html = {
@@ -266,7 +338,7 @@ const buttons = {
 		button.addEventListener('click', (event) => {
 			const page = event.target.innerText
 
-			controls.goTo(page)
+			controls.goTo(+page)
 			update()
 		})
 
@@ -275,8 +347,9 @@ const buttons = {
 	update() {
 		this.element.innerHTML = ""
 		const { maxLeft, maxRight } = buttons.calculateMaxVisible()
+		//console.log(maxLeft, maxRight);
 		for (let page = maxLeft; page <= maxRight; page++) {
-			buttons.create(page)
+			buttons.create(page)		
 		}
 	},
 	calculateMaxVisible() {
@@ -300,5 +373,13 @@ const buttons = {
 	}
 
 }
+main()
 
-init()
+
+////// MouseOver
+//var mouseEvent = document.querySelector("#title");
+
+//mouseEvent.addEventListener("mouseover", function() {
+	
+//	this.style.backgroundcolor = "yellow"
+//})
