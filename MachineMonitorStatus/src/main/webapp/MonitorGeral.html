@@ -8,30 +8,32 @@
 <body>
     <div id="principal">
         <div id="header_container">
-               <a href="http://www.midiavox.com.br/" class="logo"><img src="imagens/midiavoxlogo.png" width="35px"></a>
+               <a href="http://www.midiavox.com.br/" class="logo"><img src="imagens/midiavoxlogo.png" width="45px"></a>
 
             <div id = "navegacao">
                 <ul >
                     <li>
-                        <a href="index.html" style="margin-right: 50px; color: rgba(255, 11, 11, 0.9); width: 40px;"> <img src="imagens/geral.png" width="23px"> Geral
+                        <a href="index.html" style="margin-right: 50px; color: rgba(255, 11, 11, 0.9);"> <img src="imagens/geral.png" width="30px"> Geral
                         </a>
                     </li>
                     <li>
-                        <a href="index.html" style="margin-right: 50px; width: 80px;"> <img src="imagens/monitoring.png" width="23px"> Monitoramento
+                        <a href="MonitorGeral.html" style="margin-right: 50px; width: 80px;"> <img src="imagens/monitoring.png" width="30px"> Monitoramento
                         </a>
                     </li>
                     <li>
-                        <a href="cadastrar.html"> <img src="imagens/editing.png" width="23px"> Cadastrar
+                        <a href="cadastrar.html"> <img src="imagens/editing.png" width="25px"> Cadastrar
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-
-        <div id="table_container">
+	</div>
+        	<div id="table_container">
             <table id="table">
-                    <tr>
+                     <tr>
+                     
                         <h2>MONITORAMENTO GERAL</h2>
+                        
                     </tr>
                     <tr class="th_names">
                         <td>ID</td>
@@ -45,13 +47,22 @@
                         <td>MONITOR MEMÓRIA</td>
                         <td>MONITOR DISCO</td>
                     </tr>
-                <tbody class="list" id="list">
-
-
-                </tbody>
-            </table>
-        </div>
-    </div>
+                	<tbody class="list" id="list">
+                	</tbody>
+    			</table>
+        	</div>
+        	 <section id="paginate">
+                <div class="pagination">
+                    <div class="prev">❮</div>
+                    <div class="numbers">
+                        <div>1</div>
+                    </div>
+                    <div class="next">❯</div>
+                </div>
+             </section>
+   
     <script src="js/main.js"></script>
+   
+    
 </body>
 </html>
