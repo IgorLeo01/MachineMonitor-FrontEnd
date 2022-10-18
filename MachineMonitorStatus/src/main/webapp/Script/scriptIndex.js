@@ -45,13 +45,15 @@ function criaLinha(machine) {
     tdLimiteDisco = document.createElement("td")
     tdLimiteDisco.classList.add('item')
 
+    checkStatus = document.createElement("div")
     if (machine.status == false) {
-        tdStatus.classList.add('statusFail')
-        machine.status = "fail"
+        checkStatus.classList.add('statusFail')
+       // machine.status = "fail"
     } else {
-        tdStatus.classList.add('status')
+        checkStatus.classList.add('status')
     }
     
+    tdStatus.appendChild(checkStatus)
     tdId.innerHTML = machine.mchID
     tdIp.innerHTML = machine.IP
 
@@ -62,7 +64,7 @@ function criaLinha(machine) {
         tdOs.innerHTML = machine.OS
     }
         
-    tdStatus.innerHTML = machine.status
+    //tdStatus.innerHTML = machine.status
     if(machine.latestHeartBeat != null ) 
         tdLastHeartbeat.innerHTML = machine.latestHeartBeat
     tdLimiteMemoria.innerHTML = machine.limitMemory
@@ -218,7 +220,10 @@ const filters = {
         html.get('#filter-button').addEventListener('click', () => {
             const ip = html.get('#input').value
             let date = html.get('#date').value
-                console.log(date)
+            let day = ''
+            let month  =''           
+            let year =''
+            
             if (ip !== '' && date === '') {
                 var url =urlGet + "?ip=" + ip
                 data = responseData.get(url).Machines
@@ -227,6 +232,11 @@ const filters = {
             }
 
             if (ip === '' && date !== '') {
+                date = new Date(html.get('#date').value).toISOString().substring(0,10)
+                day = date.substring(8,10)
+                month = date.substring(5,7)
+                year = date.substring(0,4)
+                date = day + '-' + month +'-' + year
                 url = urlGet + "?data=" + date 
                 console.log(url)
                 data = responseData.get(url).Machines
@@ -235,11 +245,17 @@ const filters = {
             }
 
             if (ip !== '' && date !== '') {
+                date = new Date(html.get('#date').value).toISOString().substring(0,10)
+                day = date.substring(8,10)
+                month = date.substring(5,7)
+                year = date.substring(0,4)
+                date = day + '-' + month +'-' + year
                 url = urlGet + "?ip=" + ip + "&" + "data=" + date
                 data = responseData.get(urlGet + "?ip=" + ip + "&" + "data=" + date).Machines
                 update()
                 return console.log(3)
             }
+            
             data = responseData.get(urlGet).Machines
             update()
             return 0

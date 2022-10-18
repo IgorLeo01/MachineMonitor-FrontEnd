@@ -278,17 +278,24 @@ ul{
 }
 
 .status{
+	margin: auto;
 	font-family: 'Poppins';
 	font-weight: 600;
 	font-size: 18px;
-	text-transform: uppercase;
-	color: #40A944;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: rgba(64, 169, 68, 0.9);
 }
 
 .statusFail{
+	margin: auto;
 	font-family: 'Poppins';
 	font-weight: 600;
 	font-size: 18px;
-	text-transform: uppercase;
-	color: rgba(227, 0, 0, 0.8);
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: rgba(227, 0, 0, 0.9);
+
 }
