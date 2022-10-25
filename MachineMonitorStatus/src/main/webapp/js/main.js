@@ -49,12 +49,21 @@ function criaLinha(machine, heartbeat) {
 	tdDiskLevel.classList.add('item');
 
 	tdId.innerHTML = machine.mchID
-	tdNome.innerHTML = machine.name
+	tdNome.innerHTML = '<span class="name-machine">' + machine.name + '</span>'
 	tdIp.innerHTML = machine.IP
 	tdOs.innerHTML = machine.OS ? machine.OS : ""
 	tdMemoryLevel.innerHTML = heartbeat.memoryLevel
 	tdDesc.innerHTML = '<span class="desc-machine">' + machine.description + '</span>'
-	tdStatus.innerHTML = machine.status ? '<span style="color:#40A944">OK</span>' : '<span style="color:#E93333">FAIL</span>'
+	//tdStatus.innerHTML = machine.status ? '<span style="color:#40A944">OK</span>' : '<span style="color:#E93333">FAIL</span>'
+	 checkStatus = document.createElement("div")
+    if (machine.status == false) {
+        checkStatus.classList.add('statusFail')
+       // machine.status = "fail"
+    } else {
+        checkStatus.classList.add('status')
+    }
+    
+    tdStatus.appendChild(checkStatus)
 	
 	tdProcessingLevel.innerHTML  = heartbeat.processingLevel 
 	tdDiskLevel.innerHTML  = heartbeat.disklevel
@@ -177,7 +186,7 @@ function criaLinha(machine, heartbeat) {
 				}else  {
 					tdDisk.style.backgroundColor = 'rgba(250, 104, 104, 0.28)'}
 
-	tdLastHeart.innerHTML = '<span class="last-heartbeat">' + (machine.latestHeartBeat ? machine.latestHeartBeat : "") + '</span>'
+	tdLastHeart.innerHTML = '<span class="last-heartbeat">' + (machine.latestHeartBeat ? (`${machine.latestHeartBeat.split(" ")[0]}<br>${machine.latestHeartBeat.split(" ")[1]}`) : "") + '</span>'
 	tdProcess.appendChild(info_process_state)
 	//tdProcess.innerHTML = '<span class="process-monitor">' + (machine.processingSpeed ? machine.processingSpeed : "30") + '</span>'
 	//tdLimitProcess.innerHTML = machine.limitProcessing
@@ -374,12 +383,3 @@ const buttons = {
 
 }
 main()
-
-
-////// MouseOver
-//var mouseEvent = document.querySelector("#title");
-
-//mouseEvent.addEventListener("mouseover", function() {
-	
-//	this.style.backgroundcolor = "yellow"
-//})
